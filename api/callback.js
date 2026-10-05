@@ -15,7 +15,7 @@ export default async function handler(req, res) {
   if (url.searchParams.get("error")) return redirect(res, "/?login=cancelled");
   if (!code || !state || state !== parseCookies(req).mw_state) return redirect(res, "/?login=failed");
   try {
-    setSession(res, await exchangeCode(code));
+    setSession(res, await exchangeCode(req, code));
     redirect(res, "/studio.html");
   } catch {
     redirect(res, "/?login=failed");
