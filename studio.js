@@ -105,12 +105,16 @@ function update() {
 function onFile() {
   file = $("file").files[0] || null;
   durationOk = false;
+  $("durationMsg").textContent = "";
   show($("durationMsg"), false);
   const v = $("preview");
   if (!file) { show(v, false); v.removeAttribute("src"); update(); return; }
   v.src = URL.createObjectURL(file);
   show(v, true);
+  // Browsers may not load media in a background tab; don't block posting on the preview.
+  const fallback = setTimeout(() => { if (!durationOk && !$("durationMsg").textContent) { durationOk = true; update(); } }, 5000);
   v.onloadedmetadata = () => {
+    clearTimeout(fallback);
     const max = creator?.max_video_post_duration_sec;
     durationOk = !max || v.duration <= max;
     if (!durationOk) {
@@ -169,7 +173,7 @@ async function send(mode) {
       const commercial = $("commercial").checked;
       plan = await call("/api/init", {
         video_size: file.size,
-        duration_sec: $("preview").duration,
+        duration_sec: Number.isFinite($("preview").duration) ? $("preview").duration : undefined,
         post: {
           title: $("title").value,
           privacy_level: $("privacy").value,
