@@ -1,7 +1,20 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mildly Wanted</title><style>body{font-family:system-ui,sans-serif;max-width:720px;margin:2rem auto;padding:0 16px;line-height:1.6;color:#222;background:#fff}h1{font-size:1.6rem}h2{font-size:1.15rem;margin-top:1.5rem}a{color:#0a58ca}nav a{margin-right:1rem}</style></head><body><nav><a href="/">Mildly Wanted</a><a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a></nav>
-<h1>Mildly Wanted</h1>
-<p>Short, high-energy gameplay highlights, cut for vertical video.</p>
-<p>The Mildly Wanted app turns gameplay highlights into vertical clips and sends them to the creator's TikTok inbox as drafts, so the creator can review, edit and post them from TikTok.</p>
-<p>Watch on YouTube: <a href="https://www.youtube.com/@mildlywanted">youtube.com/@mildlywanted</a></p>
-<p><a href="/terms.html">Terms of Service</a> · <a href="/privacy.html">Privacy Policy</a></p>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mildly Wanted</title><link rel="stylesheet" href="/style.css"></head><body>
+<header class="top"><a class="brand" href="/">Mildly Wanted</a><a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a></header>
+<main>
+<h1>Post your gameplay clips to TikTok</h1>
+<p>Mildly Wanted is a free tool for gaming creators. Connect your TikTok account, pick a vertical clip, and post it with your own caption and settings, or send it to your TikTok drafts to finish in the app. Your account page shows your follower and like counts and how your recent videos are doing.</p>
+<div id="loginMsg" class="notice warn hidden"></div>
+<p><a class="btn" href="/api/login">Continue with TikTok</a></p>
+<div class="card small">
+<p><b>What you'll be asked to allow:</b> reading your basic profile and stats, listing your public videos, and uploading or posting videos you choose. Nothing is ever posted without you pressing Post. You can disconnect at any time in TikTok under Settings and privacy → Security and permissions → Apps and services.</p>
+</div>
+<p class="muted small">Watch our own clips on <a href="https://www.youtube.com/@mildlywanted">YouTube</a>.</p>
+</main>
+<script>
+const p = new URLSearchParams(location.search).get("login");
+if (p) { const m = document.getElementById("loginMsg"); m.textContent = p === "cancelled" ? "Sign-in was cancelled." : "Sign-in didn't work. Please try again."; m.classList.remove("hidden"); }
+</script>
+<footer>Mildly Wanted is not affiliated with or endorsed by TikTok.</footer>
 </body></html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Studio · Mildly Wanted</title><link rel="stylesheet" href="/style.css"></head><body>
+<header class="top"><a class="brand" href="/">Mildly Wanted</a><a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a></header>
+<main>
+<div id="loading" class="muted">Loading your account…</div>
+<div id="app" class="hidden">
+  <div class="row" style="justify-content:space-between;margin-top:16px">
+    <div class="account"><img id="avatar" alt=""><div><div id="nickname" style="font-weight:700"></div><div id="username" class="muted small"></div></div></div>
+    <a class="btn secondary" href="/api/logout">Disconnect</a>
+  </div>
+
+  <section class="card">
+    <div class="stats">
+      <div class="stat"><b id="sFollowers">–</b><span class="muted small">Followers</span></div>
+      <div class="stat"><b id="sLikes">–</b><span class="muted small">Likes</span></div>
+      <div class="stat"><b id="sVideos">–</b><span class="muted small">Videos</span></div>
+      <div class="stat"><b id="sFollowing">–</b><span class="muted small">Following</span></div>
+    </div>
+  </section>
+
+  <h2>Post to TikTok</h2>
+  <div id="cantPost" class="notice err hidden"></div>
+  <form id="postForm" class="card">
+    <p class="small" style="margin-top:0">Posting to <b id="postingTo"></b></p>
+
+    <label class="field" for="file">Video</label>
+    <input id="file" type="file" accept="video/mp4,video/quicktime,video/webm">
+    <video id="preview" class="preview hidden" controls playsinline></video>
+    <div id="durationMsg" class="notice err hidden"></div>
+
+    <label class="field" for="title">Caption</label>
+    <textarea id="title" maxlength="2200" placeholder="Write a caption and hashtags"></textarea>
+
+    <label class="field" for="privacy">Who can view this video</label>
+    <select id="privacy" required><option value="" disabled selected>Select who can view</option></select>
+    <div id="privacyNote" class="muted small hidden">Branded content visibility cannot be set to private.</div>
+
+    <label class="field">Allow users to</label>
+    <label class="check" id="cComment"><input type="checkbox" id="allowComment"><span>Comment</span></label>
+    <label class="check" id="cDuet"><input type="checkbox" id="allowDuet"><span>Duet</span></label>
+    <label class="check" id="cStitch"><input type="checkbox" id="allowStitch"><span>Stitch</span></label>
+
+    <div class="switch" style="margin-top:16px">
+      <div><b>Disclose video content</b><div class="muted small">Turn on to disclose that this video promotes goods or services in exchange for something of value. Your video could promote yourself, a third party, or both.</div></div>
+      <input type="checkbox" id="commercial" aria-label="Disclose video content">
+    </div>
+    <div id="commercialOptions" class="hidden" style="margin-top:8px">
+      <label class="check"><input type="checkbox" id="yourBrand"><span><b>Your brand</b><br><span class="muted small">You are promoting yourself or your own business.</span></span></label>
+      <label class="check" id="cBranded"><input type="checkbox" id="brandedContent"><span><b>Branded content</b><br><span class="muted small">You are promoting another brand or a third party.</span></span></label>
+      <div id="commercialLabel" class="notice warn small hidden"></div>
+      <div id="commercialNeedsChoice" class="muted small">You need to indicate if your content promotes yourself, a third party, or both.</div>
+    </div>
+
+    <p id="declaration" class="small"></p>
+
+    <div class="row">
+      <button class="btn" id="postBtn" type="submit" disabled>Post</button>
+      <button class="btn secondary" id="draftBtn" type="button" disabled>Send to TikTok drafts</button>
+    </div>
+    <div id="progressWrap" class="hidden" style="margin-top:12px"><progress id="progress" max="100" value="0"></progress><div id="progressText" class="muted small"></div></div>
+    <div id="result" class="notice hidden"></div>
+  </form>
+
+  <h2>Your recent videos</h2>
+  <div id="videos" class="videos"></div>
+  <p id="noVideos" class="muted small hidden">No public videos yet.</p>
+</div>
+</main>
+<script src="/studio.js" type="module"></script>
+<footer>Mildly Wanted is not affiliated with or endorsed by TikTok.</footer>
+</body></html>
