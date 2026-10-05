@@ -17,7 +17,8 @@ export default async function handler(req, res) {
   try {
     setSession(res, await exchangeCode(req, code));
     redirect(res, "/studio.html");
-  } catch {
-    redirect(res, "/?login=failed");
+  } catch (err) {
+    console.error("token exchange failed:", err.message);
+    redirect(res, `/?login=failed&reason=${encodeURIComponent(err.message).slice(0, 200)}`);
   }
 }

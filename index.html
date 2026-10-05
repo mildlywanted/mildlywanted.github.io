@@ -13,8 +13,8 @@
 <p class="muted small">Watch our own clips on <a href="https://www.youtube.com/@mildlywanted">YouTube</a>.</p>
 </main>
 <script>
-const p = new URLSearchParams(location.search).get("login");
-if (p) { const m = document.getElementById("loginMsg"); m.textContent = p === "cancelled" ? "Sign-in was cancelled." : "Sign-in didn't work. Please try again."; m.classList.remove("hidden"); }
+const q = new URLSearchParams(location.search), p = q.get("login");
+if (p) { const m = document.getElementById("loginMsg"); m.textContent = p === "cancelled" ? "Sign-in was cancelled." : "Sign-in didn't work. Please try again." + (q.get("reason") ? " (" + q.get("reason") + ")" : ""); m.classList.remove("hidden"); }
 </script>
 <footer>Mildly Wanted is not affiliated with or endorsed by TikTok.</footer>
 </body></html>
