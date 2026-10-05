@@ -18,7 +18,11 @@ export default async function handler(req, res) {
     setSession(res, await exchangeCode(req, code));
     redirect(res, "/studio.html");
   } catch (err) {
-    console.error("token exchange failed:", err.message);
+    console.error("token exchange failed:", err.message, {
+      keyLength: (process.env.TIKTOK_CLIENT_KEY || "").trim().length,
+      secretLength: (process.env.TIKTOK_CLIENT_SECRET || "").trim().length,
+      rawSecretLength: (process.env.TIKTOK_CLIENT_SECRET || "").length,
+    });
     redirect(res, `/?login=failed&reason=${encodeURIComponent(err.message).slice(0, 200)}`);
   }
 }
